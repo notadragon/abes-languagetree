@@ -1,7 +1,7 @@
 let modInfo = {
-    name: "Mergables!",
+    name: "Language Tree",
 	author: "Abraham and Joshua Berne",
-	pointsName: "coins",
+	pointsName: "words",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -41,8 +41,25 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
-	return gain
+    let gain = new Decimal(1)
+
+    if (hasUpgrade("n",11)) {
+        gain = gain.add(new Decimal(1).div(2))
+    }
+    if (hasUpgrade("n",13)) {
+        gain = gain.mul(2)
+    }
+    if (hasUpgrade("n",14)) {
+        gain = gain.mul(2)
+    }
+    if (hasMilestone("n",1)) {
+        gain = gain.mul(3)
+    }
+    
+    if (hasUpgrade("n",21)) {
+        gain = gain.mul(3)
+    }
+    return gain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
